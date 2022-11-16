@@ -61,7 +61,9 @@ workflows:
   build_test_deploy:
       jobs:
         - build
-        - build_docker_image
+        - build_docker_image:
+            context:
+              - cicd-workshop
         - lint
         - test     
 
