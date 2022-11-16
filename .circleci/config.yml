@@ -21,7 +21,7 @@ jobs:
       - node/install-packages
       - run:
           command: |
-            npm run test-ci
+            npm run test-ci-reporting
   lint:
     docker: 
       - image: cimg/node:16.16.0
