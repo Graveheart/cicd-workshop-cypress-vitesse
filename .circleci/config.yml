@@ -14,12 +14,12 @@ jobs:
         type: string
     steps:
       - run:
-          name: Install doctl client
-          command: |
-            cd ~
-            wget https://github.com/digitalocean/doctl/releases/download/v<<parameters.version>>/doctl-<<parameters.version>>-linux-amd64.tar.gz
-            tar xf ~/doctl-<<parameters.version>>-linux-amd64.tar.gz
-            sudo mv ~/doctl /usr/local/bin
+        name: Install doctl client
+        command: |
+          cd ~
+          wget https://github.com/digitalocean/doctl/releases/download/v<<parameters.version>>/doctl-<<parameters.version>>-linux-amd64.tar.gz
+          tar xf ~/doctl-<<parameters.version>>-linux-amd64.tar.gz
+          sudo mv ~/doctl /usr/local/bin
   build:
     docker: 
       - image: cimg/node:16.16.0
