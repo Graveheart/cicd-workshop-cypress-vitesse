@@ -92,7 +92,7 @@ jobs:
     steps:
       - checkout
       - install_doctl:
-          version: 1.78.0
+          version: 1.79.0
       - run:
           name: Create .terraformrc file locally
           command: echo "credentials \"app.terraform.io\" {token = \"$TF_CLOUD_KEY\"}" > $HOME/.terraformrc
