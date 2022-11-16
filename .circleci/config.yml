@@ -7,19 +7,6 @@ orbs:
   terraform: circleci/terraform@3.2.0
 
 jobs:
-  install_doctl:
-    parameters:
-      version:
-        default: 1.79.0
-        type: string
-    steps:
-      - run:
-        name: Install doctl client
-        command: |
-          cd ~
-          wget https://github.com/digitalocean/doctl/releases/download/v<<parameters.version>>/doctl-<<parameters.version>>-linux-amd64.tar.gz
-          tar xf ~/doctl-<<parameters.version>>-linux-amd64.tar.gz
-          sudo mv ~/doctl /usr/local/bin
   build:
     docker: 
       - image: cimg/node:16.16.0
@@ -114,7 +101,22 @@ jobs:
               -var cluster_name=$CLUSTER_NAME \
               -var do_k8s_slug_ver=$DO_K8S_SLUG_VER \
               -auto-approve
-            
+
+commands:
+  install_doctl:
+    parameters:
+      version:
+        default: 1.79.0
+        type: string
+    steps:
+      - run:
+          name: Install doctl client
+          command: |
+            cd ~
+            wget https://github.com/digitalocean/doctl/releases/download/v<<parameters.version>>/doctl-<<parameters.version>>-linux-amd64.tar.gz
+            tar xf ~/doctl-<<parameters.version>>-linux-amd64.tar.gz
+            sudo mv ~/doctl /usr/local/bin
+                       
 workflows:
   build_test_deploy:
       jobs:
